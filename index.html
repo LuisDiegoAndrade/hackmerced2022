@@ -10,16 +10,16 @@
       <link rel="stylesheet" type="text/css" href="./css/style.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
          crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=Baskervville&display=swap" rel="stylesheet">
-      <title>Hello</title>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+      <title>Profiler</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo=" crossorigin="anonymous"></script>
    </head>
    <body>
       <header class="site-header">
          <nav class="navbar navbar-expand-md navbar-light bg-steel fixed-top">
             <div class="container">
-               <!--<img class="navbar-brand mr-4" src="http://linket.info/wp-content/uploads/2019/02/logo.png">-->
-               <h3><canvas id="canvasLoader" width="100" height="30"></canvas></h3>
+               <img class="navbar-brand mr-4" src="./logo.png">
+
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
@@ -28,25 +28,58 @@
                   </div>
                   <!-- Navbar Right Side -->
                   <div class="navbar-nav">
-                     <a class="nav-item nav-link" href="/signout">Other Tools</a>
+                     <a class="nav-item nav-link" href="#">Email Validator</a>
+                     <a class="nav-item nav-link" href="#">URL Inspector</a>
+                     <a class="nav-item nav-link" href="#">About</a>
                   </div>
                </div>
             </div>
          </nav>
       </header>
-      <div class="container">
+      <div id="main" class="container">
+         <div class="row">
+            <div class="col-md-12 content-section">
+               <canvas style="display: none;" id="canvasLoader" width="300" height="300"></canvas>
+
+               <button id="runButton" class="btn btn-outline-info" type="button" name="button" onclick="assessmainset();" >RUN</button>
+
+               <b> <h1 style="display: none; margin-top; 1em;" id="keywords"></h1> </b>
+               <br>
+               <button style="display: none;" id="infoButton" class="btn btn-outline-warning" type="button" name="button" onclick="showInfo();" >ⓘ</button>
+
+            </div>
+         </div>
+         <br />
+      </div>
+
+      <div style="display:none;" id="info" class="container">
          <div class="row">
             <div class="col-md-12 content-section">
                <br>
+               <h2> Where You're Logged In</h2>
                <div id="loggedIn"></div>
+               <br>
+               <br>
+               <h2> Installed Extensions</h2>
                <div id="extensionsDiv"></div>
+               <br>
+               <br>
+               <h2> Cached Images Load Time</h2>
+               <div id="timedCache"></div>
+               <br>
+               <!--Failed<br />-->
+               <div style="display: none" id="failed"></div>
             </div>
          </div>
+         <br>
+
       </div>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="loggedin.js"></script>
       <script src="getextension.js"></script>
+      <script src="getcache.js"></script>
+      <script src="keywords.js"></script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -104,8 +137,8 @@
 
         var nodesArr = [];
         var nodeSize = 1.2;
-        var maxNodes = 37;
-        var conDistance = 20;
+        var maxNodes = 69;
+        var conDistance = 60;
         context2.fillStyle = 'black';
         animateNetwork();
 

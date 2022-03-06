@@ -1,7 +1,8 @@
 body {
 
   color: #333333;
-  margin-top: 5rem;
+  margin-top: 7rem;
+  padding-top: 7rem;
   text-align: center;
   font-family: 'Helvetica Neue', Helvetica, Arial,sans-serif;
 }
@@ -51,7 +52,7 @@ html {
    display: grid;
    }
    body {
-   font-family: 'Baskervville', serif;
+   font-family: 'Noto Sans', sans-serif;
    display: grid;
    /*overflow: hidden;*/
    }
@@ -199,6 +200,9 @@ html {
    footer a {
    color: #ffffff;
    text-decoration: none;
+   }
+   .btn{
+     margin: 1em;
    }
    footer a:hover {
    color: #49654D;
